@@ -114,6 +114,7 @@ namespace FLog
             {
                 BaseLogEntry entry = BaseLogEntry.ParseEntry(line);
                 _entries.Add(entry);
+                Console.WriteLine(entry.ToString());
             }
         }
         #endregion
