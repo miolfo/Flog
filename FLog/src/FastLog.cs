@@ -100,6 +100,15 @@ namespace FLog
         {
             return _entries;
         }
+
+        public BaseLogEntry GetEntryWithId(int id)
+        {
+            foreach(BaseLogEntry entry in _entries)
+            {
+                if (entry.entryID == id) return entry;
+            }
+            throw new Exception("No entry found with id " + id);
+        }
         #endregion
 
         #region private methods
