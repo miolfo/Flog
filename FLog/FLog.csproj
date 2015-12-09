@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="src\FastLog.cs" />
     <Compile Include="src\IFileAccesser.cs" />
-    <Compile Include="src\AbstractLogEntry.cs" />
+    <Compile Include="src\BaseLogEntry.cs" />
     <Compile Include="src\FileAccesser.cs" />
     <Compile Include="tests\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FLog
 {
-    class SimpleEntry : AbstractLogEntry
+    class SimpleEntry : BaseLogEntry
     {
         public override int entryID
         {
