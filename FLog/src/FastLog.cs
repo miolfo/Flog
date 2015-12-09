@@ -12,7 +12,7 @@ namespace FLog
     {
         private List<BaseLogEntry> _entries = new List<BaseLogEntry>();
         private IFileAccesser _logAccess;
-        private int _maxLogEntries = 1000;
+        private int _maxLogEntries = 10000;
         private int _logsFilled = 1;
         private string _filePath;
         private string _fileName;
@@ -38,15 +38,6 @@ namespace FLog
         }
 
         #region constructors
-        /*public FastLog()
-        {
-            //Create a random name for the log file
-            string fileName = CreateLogfileName();
-            _logAccess = new FileAccesser("log", fileName);
-            _filePath = "log";
-            _fileName = fileName;
-        }*/
-
         public FastLog(LogType type)
             : this("log", CreateLogfileName(), type)
         {
