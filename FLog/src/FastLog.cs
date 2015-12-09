@@ -95,6 +95,11 @@ namespace FLog
                 Console.WriteLine("Invalid log type!");
             }
         }
+
+        public IEnumerable<BaseLogEntry> GetEntries()
+        {
+            return _entries;
+        }
         #endregion
 
         #region private methods
@@ -114,7 +119,6 @@ namespace FLog
             {
                 BaseLogEntry entry = BaseLogEntry.ParseEntry(line);
                 _entries.Add(entry);
-                Console.WriteLine(entry.ToString());
             }
         }
         #endregion

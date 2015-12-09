@@ -25,6 +25,10 @@ namespace FLog
                 logger.Log(e2);                
             }*/
             FastLog logger = new FastLog("logTests", "testlog.flog", LogType.LOGTYPE_READ);
+            foreach(BaseLogEntry entry in logger.GetEntries())
+            {
+                Console.WriteLine(entry.ToString());
+            }
         }
     }
 }
