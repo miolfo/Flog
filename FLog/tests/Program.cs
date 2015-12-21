@@ -25,7 +25,7 @@ namespace FLog
                 logger.Log(e2);                
             }*/
             FastLog logger = new FastLog("logTests", "testlog.flog", LogType.LOGTYPE_READ);
-            Console.WriteLine(logger.GetEntryWithId(32).ToString());
+            Console.WriteLine(logger.GetEntryWithId(32).content);
         }
     }
 }

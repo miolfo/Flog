@@ -9,7 +9,7 @@ namespace FLog
     /// <summary>
     /// Interface for representing a single entry in the log
     /// </summary>
-    class BaseLogEntry
+    class BaseLogEntry : AbstractEntry
     {
         /// <summary>
         /// Identifier for an entry
@@ -58,7 +58,7 @@ namespace FLog
         /// Convert the whole entry in to a string form
         /// </summary>
         /// <returns>A String representation of the entry</returns>
-        public virtual String ToString()
+        public override String ToString()
         {
             String s = "";
             String time = "[" + timeStamp.ToString() + "]";
@@ -72,7 +72,7 @@ namespace FLog
         /// </summary>
         /// <param name="entryString">Entry in the string form</param>
         /// <returns></returns>
-        public static BaseLogEntry ParseEntry(string entryString)
+        public static AbstractEntry ParseEntry(string entryString)
         {
             DateTime timeStamp;
             string content;
