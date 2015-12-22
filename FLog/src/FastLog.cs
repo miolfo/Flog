@@ -10,7 +10,7 @@ namespace FLog
 
     class FastLog
     {
-        private List<BaseLogEntry> _entries = new List<BaseLogEntry>();
+        private List<AbstractLogEntry> _entries = new List<AbstractLogEntry>();
         private IFileAccesser _logAccess;
         private int _maxLogEntries = 10000;
         private int _logsFilled = 1;
@@ -68,7 +68,7 @@ namespace FLog
         #endregion
 
         #region public methods
-        public void Log(BaseLogEntry entry)
+        public void Log(AbstractLogEntry entry)
         {
             if (_logType == LogType.LOGTYPE_WRITE)
             {
@@ -87,14 +87,14 @@ namespace FLog
             }
         }
 
-        public IEnumerable<BaseLogEntry> GetEntries()
+        public IEnumerable<AbstractLogEntry> GetEntries()
         {
             return _entries;
         }
 
-        public BaseLogEntry GetEntryWithId(int id)
+        public AbstractLogEntry GetEntryWithId(int id)
         {
-            foreach(BaseLogEntry entry in _entries)
+            foreach(AbstractLogEntry entry in _entries)
             {
                 if (entry.entryID == id) return entry;
             }
@@ -117,7 +117,8 @@ namespace FLog
             string[] logFileLines = _logAccess.GetFileContents();
             foreach (string line in logFileLines)
             {
-                BaseLogEntry entry = BaseLogEntry.ParseEntry(line);
+                SimpleEntry entry = new SimpleEntry();
+                entry.InitFromString(line);
                 _entries.Add(entry);
             }
         }

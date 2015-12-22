@@ -24,8 +24,8 @@ namespace FLog
                 SimpleEntry e2 = new SimpleEntry(i, "joo");
                 logger.Log(e2);                
             }*/
-            FastLog logger = new FastLog("logTests", "testlog.flog", LogType.LOGTYPE_READ);
-            Console.WriteLine(logger.GetEntryWithId(32).content);
+            FastLog logger2 = new FastLog("logTests", "testlog.flog", LogType.LOGTYPE_READ);
+            Console.WriteLine(logger2.GetEntryWithId(32).content);
         }
     }
 }
