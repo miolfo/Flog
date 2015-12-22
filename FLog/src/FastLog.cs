@@ -14,7 +14,6 @@ namespace FLog
     {
         private List<T> _entries = new List<T>();
         private IFileAccesser _logAccess;
-        private int _maxLogEntries = 10000;
         private int _logsFilled = 1;
         private string _filePath;
         private string _fileName;
@@ -24,25 +23,6 @@ namespace FLog
         TEntry _timerCallback;
         private Timer _timer;
         private bool _usingTimedLogging = false;
-
-        public int MaxLogEntries
-        {
-            get
-            {
-                return _maxLogEntries;
-            }
-            set
-            {
-                if (value > 0 && value < 100000)
-                {
-                    _maxLogEntries = value;
-                }
-                else
-                {
-                    throw new Exception("Invalid integer for maximum log entries!");
-                }
-            }
-        }
 
         #region constructors
         public FastLog(LogType type)
@@ -83,12 +63,6 @@ namespace FLog
             {
                 _logAccess.AppendFile(entry.ToString());
                 _entries.Add(entry);
-                if (_entries.Count == _maxLogEntries)
-                {
-                    _logAccess = new FileAccesser(_filePath, _logsFilled + _fileName);
-                    _entries.Clear();
-                    _logsFilled++;
-                }
             }
             else
             {

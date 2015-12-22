@@ -8,7 +8,6 @@ namespace FLog
 {
     class Program
     {
-        public delegate SimpleEntry testCallback();
         public static SimpleEntry asd()
         {
             SimpleEntry e = new SimpleEntry(0, "seppo hovi");
@@ -25,7 +24,7 @@ namespace FLog
             }*/
             /*FastLog<SimpleEntry> logger2 = new FastLog<SimpleEntry>("logTests", "testlog.flog", LogType.LOGTYPE_READ);
             Console.WriteLine(logger2.GetEntryWithId(32).content);*/
-            FastLog<SimpleEntry> timedLogger = new FastLog<SimpleEntry>("logTests", "timedlog.flog", LogType.LOGTYPE_WRITE);
+            FastLog<SimpleEntry> timedLogger = new FastLog<SimpleEntry>("logTests", "timedlog2.flog", LogType.LOGTYPE_WRITE);
             FastLog<SimpleEntry>.TEntry cb = asd;
             timedLogger.TimedEntry(1000, cb);
 
