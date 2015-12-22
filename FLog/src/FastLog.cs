@@ -8,9 +8,9 @@ namespace FLog
 {
     enum LogType { LOGTYPE_READ, LOGTYPE_WRITE};
 
-    class FastLog
+    class FastLog<T> where T : AbstractLogEntry 
     {
-        private List<AbstractLogEntry> _entries = new List<AbstractLogEntry>();
+        private List<T> _entries = new List<T>();
         private IFileAccesser _logAccess;
         private int _maxLogEntries = 10000;
         private int _logsFilled = 1;
@@ -68,7 +68,7 @@ namespace FLog
         #endregion
 
         #region public methods
-        public void Log(AbstractLogEntry entry)
+        public void Log(T entry)
         {
             if (_logType == LogType.LOGTYPE_WRITE)
             {
@@ -87,14 +87,14 @@ namespace FLog
             }
         }
 
-        public IEnumerable<AbstractLogEntry> GetEntries()
+        public IEnumerable<T> GetEntries()
         {
             return _entries;
         }
 
-        public AbstractLogEntry GetEntryWithId(int id)
+        public T GetEntryWithId(int id)
         {
-            foreach(AbstractLogEntry entry in _entries)
+            foreach(T entry in _entries)
             {
                 if (entry.entryID == id) return entry;
             }
@@ -117,7 +117,7 @@ namespace FLog
             string[] logFileLines = _logAccess.GetFileContents();
             foreach (string line in logFileLines)
             {
-                SimpleEntry entry = new SimpleEntry();
+                T entry = (T)Activator.CreateInstance(typeof(T), new object[] { });
                 entry.InitFromString(line);
                 _entries.Add(entry);
             }
